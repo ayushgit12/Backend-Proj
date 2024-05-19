@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { type } from "os";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Schema } from "mongoose";
@@ -86,3 +85,4 @@ userSchema.methods.generateRefreshToken = function(){
 }
 
 export const User = mongoose.model("User", userSchema);
+// stored as users in the database
