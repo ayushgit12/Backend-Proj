@@ -22,7 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if(existedUser){
     throw new ApiError(409, 'User with email or username already exists')
-    console.log('User with email or username already exists')
+    // console.log('User with email or username already exists')
   }
 
   const avatarLocalPath = req.files?.avatar[0]?.path
@@ -68,12 +68,12 @@ const registerUser = asyncHandler(async (req, res) => {
 const generateAccessAndRefreshToken = async(userId) => {
   try {
     const user = await User.findById(userId)
-    const accessToken = user.generateAccessToken()
-    const refreshToken = user.generateRefreshToken()
+    const accessToken = await user.generateAccessToken()
+    const refreshToken = await user.generateRefreshToken()
 
     user.refreshToken = refreshToken
     await user.save({ validateBeforeSave: false })
-
+    console.log(accessToken, refreshToken)
     return { accessToken, refreshToken }
 
 
@@ -138,8 +138,8 @@ const logoutUser = asyncHandler(async(req,res) => {
   // remove refresh token from database
   await User.findByIdAndUpdate(req.user._id, 
     {
-      $set: {
-        refreshToken: undefined
+      $unset: {
+        refreshToken: 1
       }
     },
     {new: true}
