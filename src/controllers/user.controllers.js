@@ -76,7 +76,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 
     user.refreshToken = refreshToken
     await user.save({ validateBeforeSave: false })
-    console.log(accessToken, refreshToken)
+    // console.log(accessToken, refreshToken)
     return { accessToken, refreshToken }
 
 
@@ -308,7 +308,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 
 const getUserChannelProfile = asyncHandler(async (req, res) => {
   const {username} = req.params
-  console.log(username)
+  // console.log(username)
 
     if (!username?.trim()) {
         throw new ApiError(400, "username is missing")
