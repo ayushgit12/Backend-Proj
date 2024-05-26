@@ -5,7 +5,7 @@ import { User } from '../models/user.models.js'
 import { uploadOnCloudinary } from '../utils/cloudinary.js'
 import { APIresponse } from '../utils/APIresponse.js'
 import jwt from 'jsonwebtoken'
-import { subscribe } from 'diagnostics_channel'
+// import { subscribe } from 'diagnostics_channel'
 import mongoose from 'mongoose'
 
 const registerUser = asyncHandler(async (req, res) => {
